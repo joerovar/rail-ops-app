@@ -1,0 +1,53 @@
+* {
+  margin: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: 012d4f;
+}
+
+h1 {
+  font-size : 22px;
+}
+
+h2 {
+  color: #012d4f;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-size: 22px;
+}
+
+h4 {
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+/* popup stuff */
+.modal { font-size: 12px;}
+.modal .header { 
+  width: 100%; 
+  border-bottom: 1px solid gray; 
+  font-size: 15px; 
+  text-align: center; 
+  padding: 5px;
+}
+.modal .content { 
+  width: 100%; padding: 10px 5px;
+}
+.modal .actions { 
+      width: 100%; 
+      padding: 10px 5px; 
+      margin: auto; 
+      text-align: center;
+    }
+.modal .close { 
+  cursor: pointer; 
+  position: absolute; 
+  display: block; 
+  padding: 2px 5px; 
+  line-height: 20px; 
+  right: -10px; 
+  top: -10px; 
+  font-size: 20px; 
+  background: #ffffff; 
+  border-radius: 18px; 
+  border: 1px solid #cfcece;
+}
