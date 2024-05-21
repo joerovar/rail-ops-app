@@ -17,15 +17,17 @@ export const COLUMNS_RAIL = [
         id: 'arrT_headway',
     },
     {
-    Header: 'Time Until Arrival',
-    accessor: 'arrT',
-    id: 'timeUntilArrival', // Add unique ID
-    Cell: ({ value }) => {
-      const arrivalTime = moment(value);
-      const centralTime = moment().tz("America/Chicago"); // US Central Time
-      const diffMins = Math.ceil(arrivalTime.diff(centralTime, 'minutes'));
-      return `${diffMins} minutes`;}
-    },
+        Header: 'Time Until Arrival',
+        accessor: 'arrT',
+        id: 'timeUntilArrival', // Add unique ID
+        Cell: ({ value }) => {
+          const arrivalTimeChicago = moment.tz(value, "America/Chicago");
+          const arrivalTimeLocal = arrivalTimeChicago.clone().local(); // Convert to local time
+          const currentTime = moment(); // Current local time
+          const diffMins = Math.ceil(arrivalTimeLocal.diff(currentTime, 'minutes'));
+          return `${diffMins} minutes`;
+        },
+      },
     {
       Header: 'Destination Name',
       accessor: 'destNm',

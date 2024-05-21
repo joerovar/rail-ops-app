@@ -7,13 +7,14 @@ export const ModalRail = (props) => {
   const toggleConfUrl = `blabla`;
 
   const formatTime = (datetime) => {
-    return moment(datetime).format('HH:mm');
+    return moment(datetime).tz("America/Chicago").format('HH:mm');
   };
 
   const calculateTimeUntilArrival = (arrT) => {
-    const arrivalTime = moment(arrT);
-    const centralTime = moment().tz("America/Chicago"); // US Central Time
-    const diffMins = Math.ceil(arrivalTime.diff(centralTime, 'minutes'));
+    const arrivalTimeChicago = moment.tz(arrT, "America/Chicago");
+    const arrivalTimeLocal = arrivalTimeChicago.clone().local(); // Convert to local time
+    const currentTime = moment(); // Current local time
+    const diffMins = Math.ceil(arrivalTimeLocal.diff(currentTime, 'minutes'));
     return diffMins;
   };
 
