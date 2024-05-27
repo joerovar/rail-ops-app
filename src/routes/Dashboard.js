@@ -4,8 +4,10 @@ import { TableRail } from "../components/SubTables";
 export const DashboardOHare = () => {
     return (
         <div>
-            <h2>O'Hare Runs</h2>
-            <TableRail/>
+            <h2>Arrivals</h2>
+            <TableRail stationName='OHareN'/>
+            <h2>Departures</h2>
+            <TableRail stationName='OHareS'/>
         </div>
     )
 }
@@ -13,8 +15,21 @@ export const DashboardOHare = () => {
 export const DashboardFPark = () => {
     return (
         <div>
-            <h2>Forest Park Runs</h2>
-            <TableRail/>
+            <h2>Arrivals</h2>
+            <TableRail stationName='FstPkS'/>
+            <h2>Departures</h2>
+            <TableRail stationName='FstPkN'/>
+        </div>
+    )
+}
+
+export const DashboardUIC = () => {
+    return (
+        <div>
+            <h2>Arrivals</h2>
+            <TableRail stationName='UICHdS'/>
+            <h2>Departures</h2>
+            <TableRail stationName='UICHdN'/>
         </div>
     )
 }

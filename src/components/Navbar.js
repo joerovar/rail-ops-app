@@ -15,6 +15,8 @@ const Navbar = ({ setToken }) => {
                 <Link to="/dashboardOHare">O'Hare</Link>
                 <Link>|</Link>
                 <Link to="/dashboardFPark">Forest Park</Link>
+                <Link>|</Link>
+                <Link to="/dashboardUIC">UIC Halsted</Link>
             </div>
         </nav>
     )

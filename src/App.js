@@ -1,7 +1,7 @@
 import { Route, Routes} from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./routes/Home";
-import { DashboardFPark, DashboardNavyPier, DashboardOHare, DashboardRed} from "./routes/Dashboard";
+import { DashboardFPark, DashboardOHare, DashboardUIC} from "./routes/Dashboard";
 import React from "react";
 import './App.css';
 
@@ -14,6 +14,7 @@ function App() {
           <Route exact path={"/"} element={<Home />} />
           <Route path={"/dashboardOHare"} element={<DashboardOHare />} />
           <Route path={"/dashboardFPark"} element={<DashboardFPark />} />
+          <Route path={"/dashboardUIC"} element={<DashboardUIC />} />
         </Routes>
       </div>
     </div>
