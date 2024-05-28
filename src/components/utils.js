@@ -76,7 +76,7 @@ export const pushAdjust = async (baseUrl, rowData) => {
 };
 
 
-const useTableData = (url, num = 3, station = "OHareS", phorizon = 5, fhorizon = 20) => {
+const useTableData = (url, station = "OHareS", phorizon = 5, fhorizon = 20) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -99,7 +99,7 @@ const useTableData = (url, num = 3, station = "OHareS", phorizon = 5, fhorizon =
     };
 
     fetchData();
-  }, [url, num, station]);
+  }, [url, station]);
 
   return { data, loading, error };
 };

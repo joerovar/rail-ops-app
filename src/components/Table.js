@@ -3,8 +3,8 @@ import { useTable } from 'react-table';
 import './table.css';
 import useTableData from './utils';
 
-const Table = ({ columns, dataUrl, ModalComponent, num = 3, stationName = "OHareS" }) => {
-  const { data, loading, error } = useTableData(dataUrl, num, stationName);
+const Table = ({ columns, dataUrl, ModalComponent, stationName = "OHareS" }) => {
+  const { data, loading, error } = useTableData(dataUrl, stationName);
   const memoizedColumns = useMemo(() => columns, []);
   const [selectedRowData, setSelectedRowData] = useState([]);
   const [openModal, setOpenModal] = useState(false);
