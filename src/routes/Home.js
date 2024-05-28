@@ -9,6 +9,7 @@ const Home = () => {
       <h2>RailOps App</h2>
         <h4 className="homepageText">
             Welcome to the RailOps App! Click on stations above to get monitoring information and recommendations.
+            Developers: Zhihao Lyu, Joseph Rodriguez, Mojtaba Yousefi, Haris Koutsopoulos
         </h4>
         <img src={ctaImage} alt="CTA Logo" />  {/* inserting the image */}
         <img src={mitImage} alt="MIT Logo" />  {/* inserting the image */}

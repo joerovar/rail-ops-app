@@ -19,11 +19,11 @@ export const HwDev = (value) => {
   if (value === null || value === undefined) {
     return '';
   } else if (value > 5) {
-    return 'gapped';
+    return `${value} gapped`;
   } else if (value < -5) {
-    return 'bunched';
+    return `${value} bunched`;
   } else {
-    return 'ok';
+    return `${value} ok`;
   }
 };
 
