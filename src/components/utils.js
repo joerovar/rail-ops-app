@@ -76,7 +76,7 @@ export const pushAdjust = async (baseUrl, rowData) => {
 };
 
 
-const useTableData = (url, num = 3, station = "OHareS") => {
+const useTableData = (url, station = "OHareS", phorizon = 5, fhorizon = 20) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -85,7 +85,7 @@ const useTableData = (url, num = 3, station = "OHareS") => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const response = await fetch(`${url}?num=${num}&station=${station}`);
+        const response = await fetch(`${url}?phorizon=${phorizon}&fhorizon=${fhorizon}&station=${station}`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -99,7 +99,7 @@ const useTableData = (url, num = 3, station = "OHareS") => {
     };
 
     fetchData();
-  }, [url, num, station]);
+  }, [url, station]);
 
   return { data, loading, error };
 };
