@@ -20,22 +20,66 @@ export const ModalRail = (props) => {
       stationName={stationName}
     >
       <div className="bodySection">
-        <ul>
-          <li><strong>Time:</strong> {formatTime(rowData.arrT)}</li>
-          <li><strong>Time Until:</strong> {timeUntilArrival} minutes</li>
-          <li><strong>Schd. Time:</strong> {formatScheduledTime(rowData.schd_time)}</li>
-          <li><strong>Adjusted:</strong> {rowData.adjusted ? "Yes":"No"}</li>
-          <li><strong>Comments:</strong> {rowData.comments}</li>
-          <li><strong>Driver ID:</strong> {rowData.driver_id}</li>
-          <li><strong>Vehicle ID:</strong> {rowData.vehicle_id}</li>
-          <li><strong>Prediction Generated:</strong> {formatTime(rowData.prdt)}</li>
-          <li><strong>Is Approaching:</strong> {rowData.isApp === "1" ? "Yes" : "No"}</li>
-          <li><strong>Is Delayed:</strong> {rowData.isDly === "1" ? "Yes" : "No"}</li>
-          <li><strong>Is Fault:</strong> {rowData.isFlt === "1" ? "Yes" : "No"}</li>
-          <li><strong>Scheduled Interval:</strong> {rowData.schInt} minutes</li>
-          <li><strong>Scheduled Headway:</strong> {scheduledHeadwayMinutes} minutes</li>
-          <li><strong>Trip Number:</strong> {rowData.tripno}</li>
-        </ul>
+        <table className="modalTable">
+          <tbody>
+            <tr>
+              <td><strong>Time:</strong></td>
+              <td>{formatTime(rowData.arrT)}</td>
+            </tr>
+            <tr>
+              <td><strong>Time Until:</strong></td>
+              <td>{timeUntilArrival} minutes</td>
+            </tr>
+            <tr>
+              <td><strong>Schd. Time:</strong></td>
+              <td>{formatScheduledTime(rowData.schd_time)}</td>
+            </tr>
+            <tr>
+              <td><strong>Adjusted:</strong></td>
+              <td>{rowData.adjusted ? "Yes" : "No"}</td>
+            </tr>
+            <tr>
+              <td><strong>Comments:</strong></td>
+              <td>{rowData.comments}</td>
+            </tr>
+            <tr>
+              <td><strong>Driver ID:</strong></td>
+              <td>{rowData.driver_id}</td>
+            </tr>
+            <tr>
+              <td><strong>Vehicle ID:</strong></td>
+              <td>{rowData.vehicle_id}</td>
+            </tr>
+            <tr>
+              <td><strong>Prediction Generated:</strong></td>
+              <td>{formatTime(rowData.prdt)}</td>
+            </tr>
+            <tr>
+              <td><strong>Is Approaching:</strong></td>
+              <td>{rowData.isApp === "1" ? "Yes" : "No"}</td>
+            </tr>
+            <tr>
+              <td><strong>Is Delayed:</strong></td>
+              <td>{rowData.isDly === "1" ? "Yes" : "No"}</td>
+            </tr>
+            <tr>
+              <td><strong>Is Fault:</strong></td>
+              <td>{rowData.isFlt === "1" ? "Yes" : "No"}</td>
+            </tr>
+            <tr>
+              <td><strong>Scheduled Interval:</strong></td>
+              <td>{rowData.schInt} minutes</td>
+            </tr>
+            <tr>
+              <td><strong>Scheduled Headway:</strong></td>
+              <td>{scheduledHeadwayMinutes} minutes</td>
+            </tr>
+            <tr>
+              <td><strong>Trip Number:</strong></td>
+              <td>{rowData.tripno}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </Modal>
   );

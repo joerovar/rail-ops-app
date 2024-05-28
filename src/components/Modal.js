@@ -25,10 +25,13 @@ const Modal = ({ closeModal, rowData, pushUrl, title, stationName, children }) =
         <div className="title">
           <h1>{title}</h1>
         </div>
+        <div className="manualInputs">
+          <button onClick={handleAdjust} className="adjustButton">Adjust</button>
+        </div>
         <div className="body">
           {children}
           <div className="bodySection">
-            <button onClick={handleAdjust}>Adjust</button>
+            {/* Additional information */}
           </div>
         </div>
       </div>
