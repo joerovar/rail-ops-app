@@ -1,0 +1,18 @@
+.home {
+    text-align: center;
+  }
+  
+  .homepageText {
+    margin-bottom: 20px;
+  }
+  
+  .images {
+    margin-bottom: 20px;
+  }
+  
+  .developers {
+    font-size: 0.8em;
+    color: #555;  /* Lighter color for less emphasis */
+    margin-top: 30px;  /* Space above the developers' text */
+  }
+  
