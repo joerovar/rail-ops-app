@@ -21,7 +21,12 @@ const Table = ({ columns, dataUrl, ModalComponent, stationName = "OHareS" }) => 
 
   return (
     <div className="table">
-      {openModal && <ModalComponent closeModal={setOpenModal} rowData={selectedRowData} />}
+      {openModal && ( 
+      <ModalComponent 
+      closeModal={setOpenModal} 
+      rowData={selectedRowData}
+      stationName={stationName} /> 
+    )}
       <table {...getTableProps()}>
         <thead>
           {headerGroups.map(headerGroup => (

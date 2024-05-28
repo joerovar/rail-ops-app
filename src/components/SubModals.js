@@ -4,7 +4,7 @@ import Modal from './Modal';
 import API_URLS from '../config';
 
 export const ModalRail = (props) => {
-  const { rowData } = props;
+  const { rowData, stationName } = props;
   const runId = rowData.rn; // Use the pre-sliced value directly
   const pushUrl = `${API_URLS.PUSH_RAIL}?runid=${runId}`;
 
@@ -17,6 +17,7 @@ export const ModalRail = (props) => {
       rowData={rowData}
       pushUrl={pushUrl}
       title={`Run ${rowData.runid}`}
+      stationName={stationName}
     >
       <div className="bodySection">
         <ul>

@@ -58,10 +58,10 @@ export const formatScheduledTime = (schd_time) => {
   };
  
 // Function to handle the API call for adjusting
-export const pushAdjust = async (baseUrl, rowData) => {
+export const pushAdjust = async (baseUrl, rowData, stationName) => {
   const adjusted = !rowData.adjusted; // Toggle the adjusted value
   const runId = rowData.rn; // Use the pre-sliced value directly
-  const url = `${baseUrl}?runid=${runId}&adjusted=${adjusted}`;
+  const url = `${baseUrl}?runid=${runId}&station=${stationName}&adjusted=${adjusted}`;
 
   try {
     const response = await fetch(url, { method: 'POST' });

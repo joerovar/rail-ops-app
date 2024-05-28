@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./modal.css";
 import { pushAdjust } from './utils'; // Import the pushAdjust function
 
-const Modal = ({ closeModal, rowData, pushUrl, title, children }) => {
+const Modal = ({ closeModal, rowData, pushUrl, title, stationName, children }) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -13,7 +13,7 @@ const Modal = ({ closeModal, rowData, pushUrl, title, children }) => {
   }, [rowData]);
 
   const handleAdjust = () => {
-    pushAdjust(pushUrl, rowData); // Call the pushAdjust function with the necessary parameters
+    pushAdjust(pushUrl, rowData, stationName); // Call the pushAdjust function with the necessary parameters
   };
 
   return (
