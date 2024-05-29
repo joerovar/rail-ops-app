@@ -1,5 +1,6 @@
 import moment from 'moment-timezone'; // Import moment-timezone
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 // Define the FormatDev function
 export const FormatDev = (value) => {
@@ -57,24 +58,34 @@ export const formatScheduledTime = (schd_time) => {
     return scheduledTime.format('HH:mm');
   };
  
-// Function to handle the API call for adjusting
-export const pushAdjust = async (baseUrl, rowData, stationName) => {
-  const adjusted = !rowData.adjusted; // Toggle the adjusted value
-  const runId = rowData.rn; // Use the pre-sliced value directly
-  const url = `${baseUrl}?runid=${runId}&station=${stationName}&adjusted=${adjusted}`;
 
-  try {
-    const response = await fetch(url, { method: 'POST' });
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
+  // Function to handle the API call for adjusting
+  export const pushAdjust = async (baseUrl, rowData, stationName) => {
+    const adjusted = !rowData.adjusted; // Toggle the adjusted value
+    const runId = rowData.runid.slice(-3); // Slice the last three characters of runid
+    const url = `${baseUrl}?runid=${runId}&station=${stationName}&adjusted=${adjusted}`;
+  
+    console.log('Constructed URL:', url); // Log the constructed URL
+  
+    try {
+      const response = await axios.post(url);
+      console.log('Adjustment pushed successfully:', response.data);
+    } catch (error) {
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        console.error('Error response:', error.response.data);
+        console.error('Error status:', error.response.status);
+        console.error('Error headers:', error.response.headers);
+      } else if (error.request) {
+        // The request was made but no response was received
+        console.error('Error request:', error.request);
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.error('Error message:', error.message);
+      }
+      console.error('Error config:', error.config);
     }
-    const result = await response.json();
-    console.log('Adjustment pushed successfully:', result);
-  } catch (error) {
-    console.error('Error pushing adjustment:', error);
-  }
-};
-
+  };
 
 const useTableData = (url, station = "OHareS", phorizon = 5, fhorizon = 20) => {
   const [data, setData] = useState([]);
