@@ -57,18 +57,26 @@ export const formatScheduledTime = (schd_time) => {
     const scheduledTime = midnightChicago.add(schd_time, 'seconds');
     return scheduledTime.format('HH:mm');
   };
- 
+
 
   // Function to handle the API call for adjusting
   export const pushAdjust = async (baseUrl, rowData, stationName) => {
     const adjusted = !rowData.adjusted; // Toggle the adjusted value
     const runId = rowData.runid.slice(-3); // Slice the last three characters of runid
-    const url = `${baseUrl}?runid=${runId}&station=${stationName}&adjusted=${adjusted}`;
   
-    console.log('Constructed URL:', url); // Log the constructed URL
+    console.log('Constructed URL:', baseUrl); // Log the base URL
   
     try {
-      const response = await axios.post(url);
+      const response = await axios.post(baseUrl, {
+        runid: runId,
+        station: stationName,
+        adjusted: adjusted
+      }, {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      });
+  
       console.log('Adjustment pushed successfully:', response.data);
     } catch (error) {
       if (error.response) {
@@ -86,6 +94,7 @@ export const formatScheduledTime = (schd_time) => {
       console.error('Error config:', error.config);
     }
   };
+  
 
 const useTableData = (url, station = "OHareS", phorizon = 5, fhorizon = 20) => {
   const [data, setData] = useState([]);
