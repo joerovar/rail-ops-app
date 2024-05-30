@@ -1,6 +1,6 @@
 import moment from 'moment-timezone'; // Import moment-timezone
-import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 // Define the FormatDev function
 export const FormatDev = (value) => {
@@ -53,48 +53,66 @@ export const formatTime = (datetime) => {
 
 // Function to convert schd_time (seconds since midnight) to HH:mm
 export const formatScheduledTime = (schd_time) => {
-    const midnightChicago = moment().tz("America/Chicago").startOf('day'); // Midnight in Chicago time
-    const scheduledTime = midnightChicago.add(schd_time, 'seconds');
-    return scheduledTime.format('HH:mm');
-  };
+  const midnightChicago = moment().tz("America/Chicago").startOf('day'); // Midnight in Chicago time
+  const scheduledTime = midnightChicago.add(schd_time, 'seconds');
+  return scheduledTime.format('HH:mm');
+};
 
+// Function to handle the API call for adjusting
+export const pushAdjust = async (baseUrl, rowData, stationName) => {
+  const adjusted = !rowData.adjusted; // Toggle the adjusted value
+  const runId = rowData.runid.slice(-3); // Slice the last three characters of runid
 
-  // Function to handle the API call for adjusting
-  export const pushAdjust = async (baseUrl, rowData, stationName) => {
-    const adjusted = !rowData.adjusted; // Toggle the adjusted value
-    const runId = rowData.runid.slice(-3); // Slice the last three characters of runid
-  
-    console.log('Constructed URL:', baseUrl); // Log the base URL
-  
-    try {
-      const response = await axios.post(baseUrl, {
-        runid: runId,
-        station: stationName,
-        adjusted: adjusted
-      }, {
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        }
-      });
-  
-      console.log('Adjustment pushed successfully:', response.data);
-    } catch (error) {
-      if (error.response) {
-        // The request was made and the server responded with a status code
-        console.error('Error response:', error.response.data);
-        console.error('Error status:', error.response.status);
-        console.error('Error headers:', error.response.headers);
-      } else if (error.request) {
-        // The request was made but no response was received
-        console.error('Error request:', error.request);
-      } else {
-        // Something happened in setting up the request that triggered an Error
-        console.error('Error message:', error.message);
+  console.log('Constructed URL:', baseUrl); // Log the base URL
+
+  try {
+    const response = await axios.post(baseUrl, {
+      runid: runId,
+      station: stationName,
+      adjusted: adjusted
+    }, {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
       }
-      console.error('Error config:', error.config);
+    });
+
+    console.log('Adjustment pushed successfully:', response.data);
+  } catch (error) {
+    if (error.response) {
+      // The request was made and the server responded with a status code
+      console.error('Error response:', error.response.data);
+      console.error('Error status:', error.response.status);
+      console.error('Error headers:', error.response.headers);
+    } else if (error.request) {
+      // The request was made but no response was received
+      console.error('Error request:', error.request);
+    } else {
+      // Something happened in setting up the request that triggered an Error
+      console.error('Error message:', error.message);
     }
-  };
-  
+    console.error('Error config:', error.config);
+  }
+};
+
+// Function to fetch data from the API
+export const fetchData = async (url, station = "OHareS", phorizon = 5, fhorizon = 20) => {
+  try {
+    const fullUrl = `${url}?phorizon=${phorizon}&fhorizon=${fhorizon}&station=${station}`;
+    console.log('Fetching data from URL:', fullUrl);
+    
+    const response = await fetch(fullUrl);
+    if (!response.ok) {
+      throw new Error(`Network response was not ok: ${response.statusText}`);
+    }
+    
+    const result = await response.json();
+    console.log('Fetched data:', result);
+    return result;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    throw error;
+  }
+};
 
 const useTableData = (url, station = "OHareS", phorizon = 5, fhorizon = 20) => {
   const [data, setData] = useState([]);
@@ -102,28 +120,34 @@ const useTableData = (url, station = "OHareS", phorizon = 5, fhorizon = 20) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchDataWrapper = async () => {
       setLoading(true);
       try {
-        const response = await fetch(`${url}?phorizon=${phorizon}&fhorizon=${fhorizon}&station=${station}`);
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const result = await response.json();
+        const result = await fetchData(url, station, phorizon, fhorizon);
         setData(result);
-      } catch (e) {
-        setError(e);
+      } catch (error) {
+        setError(error);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchData();
+    fetchDataWrapper();
   }, [url, station]);
 
-  return { data, loading, error };
+  const refreshData = async () => {
+    console.log('Refreshing data...');
+    try {
+      const result = await fetchData(url, station, phorizon, fhorizon);
+      setData(result);
+      console.log('Data refreshed successfully:', result);
+    } catch (error) {
+      setError(error);
+      console.error('Error refreshing data:', error);
+    }
+  };
+
+  return { data, loading, error, refreshData };
 };
 
 export default useTableData;
-
-

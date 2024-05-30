@@ -1,5 +1,5 @@
 .modalBackground {
-  position: fixed; /* Make sure the background covers the entire viewport */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
@@ -8,12 +8,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1000; /* Ensure the modal is above other content */
 }
 
 .modalContainer {
   width: 400px;
-  max-height: 90vh; /* Ensure it fits within the viewport */
-  overflow-y: auto; /* Enable scrolling if content overflows */
+  max-height: 90vh;
+  overflow-y: auto;
   border-radius: 12px;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -58,7 +59,7 @@
   font-size: 17px;
   cursor: pointer;
   text-align: center;
-  transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effects */
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .adjustButton:hover {
@@ -90,7 +91,7 @@
 .modalContainer .modalTable td {
   padding: 7px;
   border-bottom: 1px solid #ddd;
-  font-size: 13px; /* Adjust the font size here */
+  font-size: 13px;
 }
 
 .modalContainer .modalTable td:first-child {
@@ -108,4 +109,10 @@
 
 .modalContainer li {
   text-align: left;
+}
+
+.message {
+  color: green;
+  text-align: center;
+  margin-bottom: 10px;
 }
