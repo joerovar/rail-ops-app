@@ -1,5 +1,6 @@
 import React from 'react';
 import { TableRail } from "../components/SubTables";
+import TableGeneral from '../components/TableGeneral';
 
 export const DashboardOHare = () => {
     return (
@@ -33,3 +34,16 @@ export const DashboardUIC = () => {
         </div>
     )
 }
+
+export const DashboardGeneral = () => {
+  const phorizon = 40;
+  const fhorizon = 10;
+
+  return (
+    <div>
+      <h2>Adjusted Trips</h2>
+      <h4>*Trips between the last {phorizon} minutes and the next {fhorizon} minutes</h4>
+      <TableGeneral stations={['OHareS', 'UICHdN', 'FParkN']} phorizon={phorizon} fhorizon={fhorizon} />
+    </div>
+  );
+};

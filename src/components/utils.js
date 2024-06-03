@@ -114,40 +114,33 @@ export const fetchData = async (url, station = "OHareS", phorizon = 5, fhorizon 
   }
 };
 
-const useTableData = (url, station = "OHareS", phorizon = 5, fhorizon = 20) => {
+// Hook for fetching table data
+const useTableData = (url) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchDataWrapper = async () => {
+    const fetchData = async () => {
       setLoading(true);
       try {
-        const result = await fetchData(url, station, phorizon, fhorizon);
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const result = await response.json();
         setData(result);
-      } catch (error) {
-        setError(error);
+      } catch (e) {
+        setError(e);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchDataWrapper();
-  }, [url, station]);
+    fetchData();
+  }, [url]);
 
-  const refreshData = async () => {
-    console.log('Refreshing data...');
-    try {
-      const result = await fetchData(url, station, phorizon, fhorizon);
-      setData(result);
-      console.log('Data refreshed successfully:', result);
-    } catch (error) {
-      setError(error);
-      console.error('Error refreshing data:', error);
-    }
-  };
-
-  return { data, loading, error, refreshData };
+  return { data, loading, error };
 };
 
 export default useTableData;

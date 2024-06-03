@@ -2,7 +2,7 @@ import { FormatDev, HwDev, calculateDeviation, calculateTimeUntilArrival, format
 
 export const COLUMNS_RAIL = [
   {
-    Header: 'Destination',
+    Header: 'Towards',
     accessor: 'destNm',
   },
   {
@@ -15,11 +15,11 @@ export const COLUMNS_RAIL = [
     id: 'timeUntilArrival', // Add unique ID
     Cell: ({ value }) => {
       const diffMins = calculateTimeUntilArrival(value);
-      return `${diffMins} minutes`;
+      return `${diffMins} min`;
     },
   },
   {
-    Header: 'Time',
+    Header: 'Prd. Time',
     accessor: 'arrT',
     id: 'arrivalTime', // Add unique ID
     Cell: ({ value }) => formatTime(value),
@@ -31,23 +31,23 @@ export const COLUMNS_RAIL = [
     Cell: ({ value }) => formatScheduledTime(value),
   },
   {
-    Header: 'Headway',
-    accessor: 'arrT_headway',
-    id: 'arrT_headway',
-    Cell: ({ value }) => `${Math.ceil(value / 60)} minutes`,
-  },
-  {
-    Header: 'Scheduled Headway',
-    accessor: 'schd_headway',
-    Cell: ({ value }) => `${Math.ceil(value / 60)} minutes`,
-  },
-  {
-    Header: 'Dev.',
+    Header: 'Schd. Dev.',
     accessor: 'deviation',
     Cell: ({ row }) => {
       const deviation = calculateDeviation(row.original.arrT, row.original.schd_time);
       return FormatDev(deviation);
     }
+  },
+  {
+    Header: 'Headway',
+    accessor: 'arrT_headway',
+    id: 'arrT_headway',
+    Cell: ({ value }) => `${Math.ceil(value / 60)} min`,
+  },
+  {
+    Header: 'Schd. Headway',
+    accessor: 'schd_headway',
+    Cell: ({ value }) => `${Math.ceil(value / 60)} min`,
   },
   {
     Header: 'Hw. Dev.',
@@ -60,3 +60,25 @@ export const COLUMNS_RAIL = [
     }
   },
 ];
+
+export const COLUMNS_GENERAL = [
+  {
+    Header: 'From',
+    accessor: 'staNm',
+  },
+  {
+    Header: 'To',
+    accessor: 'destNm',
+  },
+  {
+    Header: 'Prd. Time',
+    accessor: 'arrT',
+    id: 'arrivalTime', // Add unique ID
+    Cell: ({ value }) => formatTime(value),
+  },
+  {
+    Header: 'Adj.',
+    accessor: 'holding_time',
+  },
+];
+
