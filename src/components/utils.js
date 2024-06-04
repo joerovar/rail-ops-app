@@ -143,7 +143,7 @@ export const downloadLog = async (date) => {
     const downloadUrl = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = downloadUrl;
-    a.download = `log_${date}.txt`;
+    a.download = `log_${date}.csv`;
     document.body.appendChild(a);
     a.click();
     a.remove();
