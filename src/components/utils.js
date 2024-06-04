@@ -114,6 +114,28 @@ export const fetchData = async (url, station = "OHareS", phorizon = 5, fhorizon 
   }
 };
 
+// Function to download log
+export const downloadLog = async () => {
+  const today = moment().format('YYYY-MM-DD');
+  const url = `https://bus-control-web-demo.ue.r.appspot.com/headway/download?date=${today}`;
+
+  try {
+    const response = await axios.get(url, {
+      responseType: 'blob', // Important for downloading files
+    });
+
+    const urlBlob = window.URL.createObjectURL(new Blob([response.data]));
+    const link = document.createElement('a');
+    link.href = urlBlob;
+    link.setAttribute('download', `log_${today}.json`); // or whatever file type you expect
+    document.body.appendChild(link);
+    link.click();
+    link.parentNode.removeChild(link);
+  } catch (error) {
+    console.error('Error downloading log:', error);
+  }
+};
+
 // Hook for fetching table data
 const useTableData = (url) => {
   const [data, setData] = useState([]);

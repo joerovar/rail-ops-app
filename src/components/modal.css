@@ -8,7 +8,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000; /* Ensure the modal is above other content */
+  z-index: 1000; /* Ensure it is above other elements */
 }
 
 .modalContainer {
@@ -20,7 +20,7 @@
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  padding: 20px;
 }
 
 .modalContainer .title {
@@ -47,10 +47,10 @@
   margin-bottom: 15px;
 }
 
-.adjustButton {
+.adjustButton, .downloadButton {
   width: 150px;
   height: 45px;
-  margin: 5px;
+  margin: 10px;
   border: none;
   background-color: white;
   color: #008b8b;
@@ -62,7 +62,7 @@
   transition: background-color 0.3s, color 0.3s;
 }
 
-.adjustButton:hover {
+.adjustButton:hover, .downloadButton:hover {
   background-color: #008b8b;
   color: white;
 }
@@ -111,8 +111,7 @@
   text-align: left;
 }
 
-.message {
+/* Ensure adjustment message is green */
+.adjustmentMessage {
   color: green;
-  text-align: center;
-  margin-bottom: 10px;
 }
