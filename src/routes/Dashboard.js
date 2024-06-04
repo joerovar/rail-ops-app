@@ -6,6 +6,7 @@ import { downloadLog } from '../components/utils';
 export const DashboardOHare = () => {
     return (
         <div>
+            <p>*Click over a row to see more details</p>
             <h2>O'Hare Arrivals</h2>
             <TableRail stationName='OHareN'/>
             <h2>O'Hare Departures</h2>
@@ -17,6 +18,7 @@ export const DashboardOHare = () => {
 export const DashboardFPark = () => {
     return (
         <div>
+            <p>*Click over a row to see more details</p>
             <h2>Forest Park Arrivals</h2>
             <TableRail stationName='FstPkS'/>
             <h2>Forest Park Departures</h2>
@@ -28,6 +30,7 @@ export const DashboardFPark = () => {
 export const DashboardUIC = () => {
     return (
         <div>
+            <p>*Click over a row to see more details</p>
             <h2>UIC Arrivals</h2>
             <TableRail stationName='UICHdS'/>
             <h2>UIC Departures</h2>
@@ -48,7 +51,7 @@ export const DashboardGeneral = () => {
     return (
         <div>
             <h2>Adjusted Trips</h2>
-            <h4>*Trips between the last {phorizon} minutes and the next {fhorizon} minutes</h4>
+            <p>*Trips between the last {phorizon} minutes and the next {fhorizon} minutes</p>
             <button onClick={handleDownloadLog} className="downloadButton">Download Log</button>
             <TableGeneral stations={['OHareS', 'UICHdN', 'FParkN']} phorizon={phorizon} fhorizon={fhorizon} />
         </div>
