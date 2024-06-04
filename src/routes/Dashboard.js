@@ -39,13 +39,18 @@ export const DashboardUIC = () => {
 export const DashboardGeneral = () => {
     const phorizon = 40;
     const fhorizon = 10;
-  
+
+    const handleDownloadLog = () => {
+        const today = new Date().toISOString().split('T')[0]; // Format today's date as yyyy-mm-dd
+        downloadLog(today);
+    };
+
     return (
-      <div>
-        <h2>Adjusted Trips</h2>
-        <h4>*Trips between the last {phorizon} minutes and the next {fhorizon} minutes</h4>
-        <button onClick={downloadLog} className="downloadButton">Download Log</button>
-        <TableGeneral stations={['OHareS', 'UICHdN', 'FParkN']} phorizon={phorizon} fhorizon={fhorizon} />
-      </div>
+        <div>
+            <h2>Adjusted Trips</h2>
+            <h4>*Trips between the last {phorizon} minutes and the next {fhorizon} minutes</h4>
+            <button onClick={handleDownloadLog} className="downloadButton">Download Log</button>
+            <TableGeneral stations={['OHareS', 'UICHdN', 'FParkN']} phorizon={phorizon} fhorizon={fhorizon} />
+        </div>
     );
-  };
+};

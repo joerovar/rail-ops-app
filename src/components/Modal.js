@@ -29,11 +29,11 @@ const Modal = ({ closeModal, rowData, pushUrl, title, stationName, children }) =
         </div>
         <div className="title">
           <h1>{title}</h1>
-          <div className="manualInputs">
-            <button onClick={handleAdjust} className="adjustButton" disabled={isAdjusting}>
-              {rowData.adjusted ? "Cancel" : "Adjust"}
-            </button>
-          </div>
+        </div>
+        <div className="manualInputs">
+          <button onClick={handleAdjust} className="adjustButton" disabled={isAdjusting}>
+            {rowData.adjusted ? "Cancel" : "Adjust"}
+          </button>
           <p className="adjustmentMessage">{adjustMessage}</p>
         </div>
         <div className="body">

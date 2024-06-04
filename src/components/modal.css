@@ -1,3 +1,4 @@
+/* Ensure the modal background covers the entire viewport */
 .modalBackground {
   position: fixed;
   top: 0;
@@ -8,26 +9,30 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000; /* Ensure it is above other elements */
+  z-index: 1000; /* Ensure it is on top */
 }
 
+/* Ensure the modal container is centered and styled properly */
 .modalContainer {
   width: 400px;
-  max-height: 90vh;
-  overflow-y: auto;
+  max-height: 90vh; /* Ensure it fits within the viewport */
+  overflow-y: auto; /* Enable scrolling if content overflows */
   border-radius: 12px;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 8px;
+  z-index: 1001; /* Ensure it is on top */
 }
 
+/* Ensure the title is centered */
 .modalContainer .title {
   text-align: center;
   margin-bottom: 15px;
 }
 
+/* Style the close button */
 .titleCloseBtn {
   display: flex;
   justify-content: flex-end;
@@ -40,6 +45,7 @@
   cursor: pointer;
 }
 
+/* Style for manual inputs section */
 .manualInputs {
   display: flex;
   justify-content: center;
@@ -47,10 +53,11 @@
   margin-bottom: 15px;
 }
 
-.adjustButton, .downloadButton {
+.adjustButton, .addInfoButton, .submitButton {
   width: 150px;
-  height: 45px;
-  margin: 10px;
+  height: 30px;
+  margin: 5px; /* Adjust this value to reduce the space between the buttons */
+  padding: 5px;
   border: none;
   background-color: white;
   color: #008b8b;
@@ -59,14 +66,17 @@
   font-size: 17px;
   cursor: pointer;
   text-align: center;
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effects */
 }
 
-.adjustButton:hover, .downloadButton:hover {
+.adjustButton:hover, .addInfoButton:hover, .submitButton:hover {
   background-color: #008b8b;
   color: white;
 }
 
+
+
+/* Style for modal body */
 .modalContainer .body {
   flex: 1;
   display: flex;
@@ -77,11 +87,19 @@
   padding: 10px;
 }
 
+/* Center text in body section */
 .modalContainer .body .bodySection {
   width: 100%;
-  text-align: left;
+  text-align: center; /* Center the text */
 }
 
+/* Adjusted space between the button and table */
+.bodySection {
+  margin-bottom: 5px; /* Reduce the space here */
+  margin-top: 3px;
+}
+
+/* Style for modal table */
 .modalContainer .modalTable {
   width: 100%;
   border-collapse: collapse;
@@ -91,7 +109,7 @@
 .modalContainer .modalTable td {
   padding: 7px;
   border-bottom: 1px solid #ddd;
-  font-size: 13px;
+  font-size: 13px; /* Adjust the font size here */
 }
 
 .modalContainer .modalTable td:first-child {
@@ -107,11 +125,55 @@
   padding-left: 10px;
 }
 
-.modalContainer li {
-  text-align: left;
+/* Style for input form */
+.inputForm {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* Ensure adjustment message is green */
-.adjustmentMessage {
-  color: green;
+.inputForm label, .inputForm select, .inputForm input, .inputForm button {
+  margin: 5px;
+  padding: 5px;
+}
+
+/* Style for the adjust and add info buttons */
+.button, .adjustButton, .addInfoButton, .submitButton, .submitButton {
+  width: 150px;
+  height: 30px;
+  margin: 5px; /* Adjust this value to reduce the space between the buttons */
+  padding: 5px;
+  border: none;
+  background-color: white;
+  color: #008b8b;
+  border: 2px solid #008b8b;
+  border-radius: 8px;
+  font-size: 17px;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effects */
+}
+
+.adjustButton:hover, .addInfoButton:hover, .submitButton:hover .downloadButton:hover {
+  background-color: #008b8b;
+  color: white;
+}
+
+/* Reduce the space between the buttons */
+.buttonContainer {
+  display: flex;
+  justify-content: center; /* Center the buttons horizontally */
+  gap: 5px; /* Adjust the gap between the buttons */
+}
+
+.modalTable {
+  margin-top: 5px; /* Adjust as needed to reduce space between buttons and table */
+}
+
+/* Other existing styles... */
+
+/* Ensure list items are left-aligned */
+.modalContainer li {
+  text-align: left;
 }

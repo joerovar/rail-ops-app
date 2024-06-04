@@ -41,6 +41,7 @@ const TableGeneral = ({ stations = ["OHareS", "UICHdN", "FParkN"], phorizon = 40
 
   const getSelectedRowValues = selectedRow => {
     setSelectedRowData(selectedRow.original);
+    setOpenModal(true);
   };
 
   if (loading) return <div>Loading...</div>;
@@ -55,7 +56,7 @@ const TableGeneral = ({ stations = ["OHareS", "UICHdN", "FParkN"], phorizon = 40
       </div>
       {openModal && (
         <ModalGeneral
-          closeModal={setOpenModal}
+          closeModal={() => setOpenModal(false)}
           rowData={selectedRowData}
         />
       )}
@@ -73,7 +74,7 @@ const TableGeneral = ({ stations = ["OHareS", "UICHdN", "FParkN"], phorizon = 40
           {rows.map(row => {
             prepareRow(row);
             return (
-              <tr {...row.getRowProps()} onClick={() => { getSelectedRowValues(row); setOpenModal(true); }}>
+              <tr {...row.getRowProps()} onClick={() => { getSelectedRowValues(row); }}>
                 {row.cells.map(cell => (
                   <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
                 ))}

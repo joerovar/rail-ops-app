@@ -94,6 +94,26 @@ export const pushAdjust = async (baseUrl, rowData, stationName) => {
   }
 };
 
+// New pushInfo function
+export const pushInfo = async (baseUrl, runId, stationName, field, value) => {
+  try {
+    const response = await axios.post(baseUrl, {
+      runid: runId,
+      station: stationName,
+      [field]: value
+    }, {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    });
+
+    console.log('Information pushed successfully:', response.data);
+  } catch (error) {
+    console.error('Error pushing information:', error);
+  }
+};
+
+
 // Function to fetch data from the API
 export const fetchData = async (url, station = "OHareS", phorizon = 5, fhorizon = 20) => {
   try {
@@ -114,27 +134,24 @@ export const fetchData = async (url, station = "OHareS", phorizon = 5, fhorizon 
   }
 };
 
-// Function to download log
-export const downloadLog = async () => {
-  const today = moment().format('YYYY-MM-DD');
-  const url = `https://bus-control-web-demo.ue.r.appspot.com/headway/download?date=${today}`;
+export const downloadLog = async (date) => {
+  const url = `https://bus-control-web-demo.ue.r.appspot.com/headway/download?date=${date}`;
 
   try {
-    const response = await axios.get(url, {
-      responseType: 'blob', // Important for downloading files
-    });
-
-    const urlBlob = window.URL.createObjectURL(new Blob([response.data]));
-    const link = document.createElement('a');
-    link.href = urlBlob;
-    link.setAttribute('download', `log_${today}.json`); // or whatever file type you expect
-    document.body.appendChild(link);
-    link.click();
-    link.parentNode.removeChild(link);
+    const response = await axios.get(url, { responseType: 'blob' });
+    const blob = new Blob([response.data], { type: response.data.type });
+    const downloadUrl = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = downloadUrl;
+    a.download = `log_${date}.txt`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
   } catch (error) {
     console.error('Error downloading log:', error);
   }
 };
+
 
 // Hook for fetching table data
 const useTableData = (url) => {
