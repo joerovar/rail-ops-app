@@ -1,7 +1,7 @@
 import React from 'react';
 import { COLUMNS_RAIL } from './columns';
 import API_URLS from '../config';
-import { ModalRail } from './SubModals';
+import { ModalRail } from './ModalRail';
 import Table from './Table';
 
 export const TableRail = ({ stationName = "OHareS", phorizon = 5, fhorizon = 20 }) => {

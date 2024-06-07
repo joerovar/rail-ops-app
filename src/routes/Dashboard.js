@@ -1,5 +1,5 @@
 import React from 'react';
-import { TableRail } from "../components/SubTables";
+import { TableRail } from "../components/TableRail";
 import TableGeneral from '../components/TableGeneral';
 import { downloadLog } from '../components/utils';
 
@@ -50,9 +50,9 @@ export const DashboardGeneral = () => {
 
     return (
         <div>
+            <button onClick={handleDownloadLog} className="downloadButton">Download Daily Log</button>
             <h2>Adjusted Trips</h2>
-            <p>*Trips between the last {phorizon} minutes and the next {fhorizon} minutes</p>
-            <button onClick={handleDownloadLog} className="downloadButton">Download Log</button>
+            <p>*between the last {phorizon} minutes and the next {fhorizon} minutes</p>
             <TableGeneral stations={['OHareS', 'UICHdN', 'FParkN']} phorizon={phorizon} fhorizon={fhorizon} />
         </div>
     );

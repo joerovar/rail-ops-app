@@ -49,7 +49,7 @@ export const ModalRail = (props) => {
           <label htmlFor="field">Field:</label>
           <select id="field" value={selectedField} onChange={handleFieldChange}>
             <option value="">Select a field</option>
-            <option value="driver_id">Driver ID</option>
+            <option value="driver_id">Operator ID</option>
             <option value="vehicle_id">Vehicle ID</option>
             <option value="comments">Comments</option>
           </select>
@@ -59,61 +59,57 @@ export const ModalRail = (props) => {
       )}
       <div className="bodySection">
         <table className="modalTable">
-          <tbody>
+        <tbody>
             <tr>
-              <td><strong>Time:</strong></td>
-              <td>{formatTime(rowData.arrT)}</td>
-            </tr>
-            <tr>
-              <td><strong>Time Until:</strong></td>
+              <td><strong>Time Until</strong></td>
               <td>{timeUntilArrival} minutes</td>
             </tr>
             <tr>
-              <td><strong>Schd. Time:</strong></td>
-              <td>{formatScheduledTime(rowData.schd_time)}</td>
-            </tr>
-            <tr>
-              <td><strong>Adjusted:</strong></td>
-              <td>{rowData.adjusted ? "Yes" : "No"}</td>
-            </tr>
-            <tr>
-              <td><strong>Comments:</strong></td>
-              <td>{rowData.comments}</td>
-            </tr>
-            <tr>
-              <td><strong>Driver ID:</strong></td>
+              <td><strong>Operator</strong></td>
               <td>{rowData.driver_id}</td>
             </tr>
             <tr>
-              <td><strong>Vehicle ID:</strong></td>
+              <td><strong>Vehicle</strong></td>
               <td>{rowData.vehicle_id}</td>
             </tr>
             <tr>
-              <td><strong>Prediction Generated:</strong></td>
+              <td><strong>Comments</strong></td>
+              <td>{rowData.comments}</td>
+            </tr>
+            <tr>
+              <td><strong>Prd. Time</strong></td>
+              <td>{formatTime(rowData.arrT)}</td>
+            </tr>
+            <tr>
+              <td><strong>Schd. Time</strong></td>
+              <td>{formatScheduledTime(rowData.schd_time)}</td>
+            </tr>
+            <tr>
+              <td><strong>Last Updated</strong></td>
               <td>{formatTime(rowData.prdt)}</td>
             </tr>
             <tr>
-              <td><strong>Is Approaching:</strong></td>
+              <td><strong>Is Approaching</strong></td>
               <td>{rowData.isApp === "1" ? "Yes" : "No"}</td>
             </tr>
             <tr>
-              <td><strong>Is Delayed:</strong></td>
+              <td><strong>Is Delayed</strong></td>
               <td>{rowData.isDly === "1" ? "Yes" : "No"}</td>
             </tr>
             <tr>
-              <td><strong>Is Fault:</strong></td>
+              <td><strong>Is Fault</strong></td>
               <td>{rowData.isFlt === "1" ? "Yes" : "No"}</td>
             </tr>
             <tr>
-              <td><strong>Scheduled Interval:</strong></td>
+              <td><strong>Scheduled Interval</strong></td>
               <td>{rowData.schInt} minutes</td>
             </tr>
             <tr>
-              <td><strong>Scheduled Headway:</strong></td>
+              <td><strong>Scheduled Headway</strong></td>
               <td>{scheduledHeadwayMinutes} minutes</td>
             </tr>
             <tr>
-              <td><strong>Trip Number:</strong></td>
+              <td><strong>Trip Number</strong></td>
               <td>{rowData.tripno}</td>
             </tr>
           </tbody>
