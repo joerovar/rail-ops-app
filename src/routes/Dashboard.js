@@ -44,8 +44,13 @@ export const DashboardGeneral = () => {
     const fhorizon = 10;
 
     const handleDownloadLog = () => {
-        const today = new Date().toISOString().split('T')[0]; // Format today's date as yyyy-mm-dd
-        downloadLog(today);
+        const today = new Date();
+        const localDate = new Date(today.getTime() - today.getTimezoneOffset() * 60000)
+            .toISOString()
+            .split('T')[0]; // Format today's date as yyyy-mm-dd in local time
+        
+        console.log('Local Date:', localDate); // Log the local date being used
+        downloadLog(localDate);
     };
 
     return (
