@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { calculateTimeUntilArrival, formatTime, formatScheduledTime, pushInfo } from './utils';
+import { calculateTimeUntilArrival, formatTime, formatScheduledTime, pushInfo, calculateRecommendedHoldTime } from './utils';
 import Modal from './Modal';
 import API_URLS from '../config';
 
@@ -32,6 +32,8 @@ export const ModalRail = (props) => {
 
   const timeUntilArrival = calculateTimeUntilArrival(rowData.arrT);
   const scheduledHeadwayMinutes = Math.ceil(rowData.schd_headway / 60); // Convert seconds to minutes
+  const predictedHeadwayMinutes = Math.ceil(rowData.arrT_headway / 60); // Convert seconds to minutes
+  const recommendedHoldTimeMins = Math.floor(calculateRecommendedHoldTime(rowData.arrT, rowData.arrT_headway, rowData.schd_headway) / 60)
 
   return (
     <Modal
@@ -63,6 +65,10 @@ export const ModalRail = (props) => {
             <tr>
               <td><strong>Time Until</strong></td>
               <td>{timeUntilArrival} minutes</td>
+            </tr>
+            <tr>
+              <td><strong>Recommended Hold</strong></td>
+              <td>{recommendedHoldTimeMins > 0 ? `${recommendedHoldTimeMins} minutes` : 'N/A'}</td>
             </tr>
             <tr>
               <td><strong>Operator</strong></td>
@@ -107,6 +113,10 @@ export const ModalRail = (props) => {
             <tr>
               <td><strong>Scheduled Headway</strong></td>
               <td>{scheduledHeadwayMinutes} minutes</td>
+            </tr>
+            <tr>
+              <td><strong>Prd. Headway</strong></td>
+              <td>{predictedHeadwayMinutes} minutes</td>
             </tr>
             <tr>
               <td><strong>Trip Number</strong></td>
