@@ -23,3 +23,42 @@ table {
     font-weight: normal;
     font-size: 15px;
   }
+
+  .tableHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .table {
+    position: relative;
+  }
+  
+  .tableHeader {
+    display: flex;
+    justify-content: center; /* Center the button horizontally */
+    align-items: center;
+    margin-bottom: 10px; /* Add some space between the button and the table */
+  }
+  
+  .refreshButton {
+    width: 45px;
+    height: 45px;
+    margin-left: 10px;
+    border: none;
+    background-color: white;
+    color: #008b8b;
+    border: 2px solid #008b8b;
+    border-radius: 8px;
+    font-size: 24px; /* Slightly larger font size for the icon */
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effects */
+  }
+  
+  .refreshButton:hover {
+    background-color: #008b8b;
+    color: white;
+  }
+  
+  

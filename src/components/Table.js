@@ -4,7 +4,7 @@ import './table.css';
 import useTableData from './utils';
 
 const Table = ({ columns, dataUrl, ModalComponent, stationName = "OHareS" }) => {
-  const { data, loading, error } = useTableData(dataUrl, stationName);
+  const { data, loading, error, refreshData } = useTableData(dataUrl, stationName);
   const memoizedColumns = useMemo(() => columns, []);
   const [selectedRowData, setSelectedRowData] = useState([]);
   const [openModal, setOpenModal] = useState(false);
@@ -21,7 +21,17 @@ const Table = ({ columns, dataUrl, ModalComponent, stationName = "OHareS" }) => 
 
   return (
     <div className="table">
-      {openModal && <ModalComponent closeModal={setOpenModal} rowData={selectedRowData} />}
+      <div className="tableHeader">
+        <button onClick={refreshData} className="refreshButton" title="Refresh">
+          &#x21bb; {/* Unicode for refresh icon */}
+        </button>
+      </div>
+      {openModal && ( 
+      <ModalComponent 
+      closeModal={setOpenModal} 
+      rowData={selectedRowData}
+      stationName={stationName} /> 
+    )}
       <table {...getTableProps()}>
         <thead>
           {headerGroups.map(headerGroup => (
