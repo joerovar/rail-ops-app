@@ -37,6 +37,14 @@ export const calculateDeviation = (arrT, schd_time) => {
   return deviation;
 };
 
+// function to calculate recommended holding times (sec)
+export const calculateRecommendedHoldTime = (arrT, arrT_headway, schd_headway) => {
+  if (arrT_headway < schd_headway) {
+    return schd_headway - arrT_headway;
+  }
+  return 0;
+};
+
 // Function to calculate Time Until Arrival
 export const calculateTimeUntilArrival = (arrT) => {
   const arrivalTimeChicago = moment.tz(arrT, "America/Chicago");
